@@ -1,0 +1,3 @@
+PREFIX a1: <http://swat.cse.lehigh.edu/onto/univ-bench.owl#>
+
+a1:webAddress[?P,?WA] :- a1:Person[?P], a1:memberOf[?P,?O], a1:name[?P,?N], BIND(CONCAT(STR(?O),"/",?N) AS ?WA) .

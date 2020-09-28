@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="JRDFox">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/JRDFox.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
