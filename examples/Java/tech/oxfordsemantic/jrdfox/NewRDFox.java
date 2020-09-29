@@ -8,6 +8,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * rdfox类
+ */
 public class NewRDFox {
 
     public static void main(String[] args) throws Exception {
@@ -17,6 +20,7 @@ public class NewRDFox {
             serverConnection.createDataStore("example", "par-complex-nn", Collections.emptyMap());
 
             // We next specify how many threads the server should use during import of data and reasoning.
+            //线程数量
             System.out.println("Setting the number of threads...");
             serverConnection.setNumberOfThreads(2);
 
@@ -26,6 +30,7 @@ public class NewRDFox {
                 // We next import the RDF data into the store. At present, only Turtle/N-triples files are supported.
                 // At the moment, please convert RDF/XML files into Turtle format to load into JRDFox.
                 System.out.println("Importing RDF data...");
+                //导入rdf文件，格式只能是.nt或者.ttl
                 try (InputStream inputStream = new BufferedInputStream(JRDFoxDemo.class.getResourceAsStream("data/legal_dupin_200_eng.nt"))) {
                     dataStoreConnection.importData(UpdateType.ADDITION, Prefixes.s_emptyPrefixes, inputStream);
                 }
@@ -35,6 +40,7 @@ public class NewRDFox {
                 dataStoreConnection.evaluateQuery(Prefixes.s_emptyPrefixes, "SELECT DISTINCT ?Y WHERE { ?X ?Y ?Z }", Collections.emptyMap(), System.out, "application/sparql-results+json");
 
                 System.out.println("Importing rules from a file...");
+                //导入规则文件
                 try (InputStream inputStream = new BufferedInputStream(JRDFoxDemo.class.getResourceAsStream("data/rules.txt"))) {
                     dataStoreConnection.importData(UpdateType.ADDITION, Prefixes.s_emptyPrefixes, inputStream);
                 }
