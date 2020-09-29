@@ -22,3 +22,8 @@ javac -d bin -sourcepath examples/Java -cp lib/JRDFox.jar examples/Java/tech/oxf
 运行
 
 java -cp bin:lib/JRDFox.jar tech.oxfordsemantic.jrdfox.NewRDFox
+
+# 3.版权
+&copy; copyright:牛津大学
+
+网址：https://docs.oxfordsemantic.tech
