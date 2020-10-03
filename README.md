@@ -3,6 +3,10 @@
 RDFox项目对于不同的OS，环境是不一样的，最主要的区别在于linux下lib文件夹下是libRDFox.so，而windows环境下是libRDFox.dll
 
 ## 1.2 使用说明
+licence文件(RDFox.lic)在windows环境下，将这个文件放置入C:\Users\ZBY\AppData\Local\RDFox\文件夹下
+
+在linux环境下，放置入~/.RDFox/文件夹下
+
 有几个文件需要注意，data文件夹下放置.nt文件和对应的规则文件（如rules.txt）。
 
 项目主文件是NewRDFox.java
@@ -14,14 +18,18 @@ RDFox项目对于不同的OS，环境是不一样的，最主要的区别在于l
 ## 2.2编译
 在项目根目录下，运行
 
+```
 javac -d bin -sourcepath examples/Java -cp lib/JRDFox.jar examples/Java/tech/oxfordsemantic/jrdfox/NewRDFox.java
+```
 
 ## 2.3 运行
 在编译通过后，将.nt文件和规则文件放置于bin/tech/oxfordsemantic/jrdfox/data/目录下
 
 运行
 
+```
 java -cp bin:lib/JRDFox.jar tech.oxfordsemantic.jrdfox.NewRDFox
+```
 
 # 3.版权
 &copy; copyright:牛津大学
