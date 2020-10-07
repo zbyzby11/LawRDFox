@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NewRDFox {
+public class NewRDFox_dupin {
 
     public static void main(String[] args) throws Exception {
         long startTime=System.currentTimeMillis();   //获取开始时间
