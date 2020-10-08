@@ -1,0 +1,5 @@
+PREFIX p: <http://www.example.org/kse/finance#>
+
+p:hold_share[?X, ?Y] :- p:control[?X, ?Y] .
+p:conn_trans[?Y, ?Z] :- p:hold_share[?X, ?Y], p:hold_share[?X, ?Z] .
+p:subClassOf[?X, ?Z] :- p:subClassOf[?X, ?Y], p:subClassOf[?Y, ?Z] .

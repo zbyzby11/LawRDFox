@@ -1,0 +1,13 @@
+Prefix(:=<http://www.example.org/kse/finance#>)
+
+Ontology(<http://www.example.org/kse/finance.owl>
+Declaration(Class(:PublicCompany))
+Declaration(Class(:Company))
+Declaration(Class(:Organization))
+Declaration(Class(:Person))
+Declaration(ObjectProperty(:control))
+SubClassOf(:PublicCompany :Company)
+SubClassOf(:Company :Organization)
+ObjectPropertyDomain(:control :Person)
+ObjectPropertyRange(:control :Company)
+)

@@ -68,7 +68,7 @@ public class NewRDFoxWithOnto {
                 }
 
                 System.out.println("Importing rules from a file...");
-                try (InputStream inputStream = new BufferedInputStream(JRDFoxDemo.class.getResourceAsStream("data/rule_onto.txt"))) {
+                try (InputStream inputStream = new BufferedInputStream(JRDFoxDemo.class.getResourceAsStream("data/rule_onto_owl.txt"))) {
                     dataStoreConnection.importData(UpdateType.ADDITION, Prefixes.s_emptyPrefixes, inputStream);
                 }
                 System.out.println("Number of tuples after materialization: " + getTriplesCount(dataStoreConnection, "IDB"));
