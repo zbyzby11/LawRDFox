@@ -28,7 +28,7 @@ public class NewRDFoxWithOnto {
                 // We next import the RDF data into the store. At present, only Turtle/N-triples files are supported.
                 // At the moment, please convert RDF/XML files into Turtle format to load into JRDFox.
                 System.out.println("Importing RDF data...");
-                try (InputStream inputStream = new BufferedInputStream(JRDFoxDemo.class.getResourceAsStream("data/finance-data.nt"))) {
+                try (InputStream inputStream = new BufferedInputStream(JRDFoxDemo.class.getResourceAsStream("data/finance-data-plus.nt"))) {
                     dataStoreConnection.importData(UpdateType.ADDITION, Prefixes.s_emptyPrefixes, inputStream);
                 }
 
@@ -63,12 +63,12 @@ public class NewRDFoxWithOnto {
                 // SPARQL, and most SPARQL built-in functions are supported.
 
                 System.out.println("Adding the ontology to the store...");
-                try (InputStream inputStream = new BufferedInputStream(JRDFoxDemo.class.getResourceAsStream("data/finance.owl"))) {
+                try (InputStream inputStream = new BufferedInputStream(JRDFoxDemo.class.getResourceAsStream("data/finance-plus2.owl"))) {
                     dataStoreConnection.importData(UpdateType.ADDITION, Prefixes.s_defaultPrefixes, inputStream);
                 }
 
                 System.out.println("Importing rules from a file...");
-                try (InputStream inputStream = new BufferedInputStream(JRDFoxDemo.class.getResourceAsStream("data/rule-with-onto.txt"))) {
+                try (InputStream inputStream = new BufferedInputStream(JRDFoxDemo.class.getResourceAsStream("data/rule_onto.txt"))) {
                     dataStoreConnection.importData(UpdateType.ADDITION, Prefixes.s_emptyPrefixes, inputStream);
                 }
                 System.out.println("Number of tuples after materialization: " + getTriplesCount(dataStoreConnection, "IDB"));
@@ -117,7 +117,7 @@ public class NewRDFoxWithOnto {
                 // Adding the rules/facts changes the number of triples. Note that the store is updated incrementally.
                 System.out.println("Number of tuples after addition: " + getTriplesCount(dataStoreConnection, "IDB"));
                 // One can export the facts from the current store into a file as follows
-                File finalFactsFile = File.createTempFile("final-facts", ".ttl");
+                File finalFactsFile = File.createTempFile("final-facts", ".ttl", new File("./"));
                 System.out.print("Exporting facts to file '" + finalFactsFile + "' ... ");
                 try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(finalFactsFile))) {
                     Map<String, String> parameters = new HashMap<String, String>();
