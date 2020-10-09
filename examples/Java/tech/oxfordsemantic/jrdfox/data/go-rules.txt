@@ -1,0 +1,3 @@
+PREFIX p: <http://www.geneontology.org/go#>
+
+p:subClassOf[?X, ?Z] :- p:subClassOf[?X, ?Y], p:subClassOf[?Y, ?Z] .

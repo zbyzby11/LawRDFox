@@ -13,6 +13,7 @@ import java.util.Map;
 public class NewRDFoxWithOnto {
 
     public static void main(String[] args) throws Exception {
+        long startTime=System.currentTimeMillis();   //获取开始时间
         try (ServerConnection serverConnection = ConnectionFactory.newServerConnection("rdfox:local", "", "")) {
 
             // We create a data store of type "par-complex-nn".
@@ -20,7 +21,7 @@ public class NewRDFoxWithOnto {
 
             // We next specify how many threads the server should use during import of data and reasoning.
             System.out.println("Setting the number of threads...");
-            serverConnection.setNumberOfThreads(2);
+            serverConnection.setNumberOfThreads(6);
 
             // We connect to the data store.
             try (DataStoreConnection dataStoreConnection = serverConnection.newDataStoreConnection("example")) {
@@ -28,7 +29,7 @@ public class NewRDFoxWithOnto {
                 // We next import the RDF data into the store. At present, only Turtle/N-triples files are supported.
                 // At the moment, please convert RDF/XML files into Turtle format to load into JRDFox.
                 System.out.println("Importing RDF data...");
-                try (InputStream inputStream = new BufferedInputStream(JRDFoxDemo.class.getResourceAsStream("data/finance-data-plus.nt"))) {
+                try (InputStream inputStream = new BufferedInputStream(JRDFoxDemo.class.getResourceAsStream("data/go-triples-new.nt"))) {
                     dataStoreConnection.importData(UpdateType.ADDITION, Prefixes.s_emptyPrefixes, inputStream);
                 }
 
@@ -63,12 +64,12 @@ public class NewRDFoxWithOnto {
                 // SPARQL, and most SPARQL built-in functions are supported.
 
                 System.out.println("Adding the ontology to the store...");
-                try (InputStream inputStream = new BufferedInputStream(JRDFoxDemo.class.getResourceAsStream("data/finance-plus2.owl"))) {
+                try (InputStream inputStream = new BufferedInputStream(JRDFoxDemo.class.getResourceAsStream("data/go.owl"))) {
                     dataStoreConnection.importData(UpdateType.ADDITION, Prefixes.s_defaultPrefixes, inputStream);
                 }
 
                 System.out.println("Importing rules from a file...");
-                try (InputStream inputStream = new BufferedInputStream(JRDFoxDemo.class.getResourceAsStream("data/rule_onto_owl.txt"))) {
+                try (InputStream inputStream = new BufferedInputStream(JRDFoxDemo.class.getResourceAsStream("data/go-rules.txt"))) {
                     dataStoreConnection.importData(UpdateType.ADDITION, Prefixes.s_emptyPrefixes, inputStream);
                 }
                 System.out.println("Number of tuples after materialization: " + getTriplesCount(dataStoreConnection, "IDB"));
@@ -128,6 +129,9 @@ public class NewRDFoxWithOnto {
             }
         }
         System.out.println("This is the end of the example!");
+        long endTime=System.currentTimeMillis(); //获取结束时间
+        System.out.println("程序运行时间： "+(endTime-startTime)+"ms");
+
     }
 
     protected static Map<String, String> getParameters(String... keyValuePairs) {
