@@ -7,10 +7,12 @@ licence文件(RDFox.lic)在windows环境下，将这个文件放置入C:\Users\Z
 
 在linux环境下，放置入~/.RDFox/文件夹下
 
-有几个文件需要注意，data文件夹下放置.nt文件（包括本体文件）和对应的规则文件（如rules.txt）。
+有几个文件需要注意，data文件夹下主要放置三元组文件（.nt文件）、本体文件（.owl）以及拟定的规则文件（rules.txt）。
 
-项目主文件有两个文件组成，一个是NewRDFox_dupin.java，一个是NewRDFoxWithOnto.java。
-前者对应不加入本体的推理引擎，后者对应加入本体文件的推理引擎。
+项目主文件有两个文件:
+一个是NewRDFox_dupin.java: 为不加入本体的推理引擎，输入数据包括格式为legal_dupin_1yi.nt的三元组文件，rules.txt的规则文件。
+一个是NewRDFoxWithOnto.java: 为加入本体文件的推理引擎，输入数据包括格式为go.owl的本体文件、go-triples-new.nt的三元组文件、go-rules.txt的规则文件。
+
 
 # 2. windows以及linux下编译运行说明
 ## 2.1 测试
@@ -35,14 +37,14 @@ javac -d bin -sourcepath examples/Java -cp lib/JRDFox.jar examples/Java/tech/oxf
 运行
 
 ```
-java -cp bin;lib/JRDFox.jar tech.oxfordsemantic.jrdfox.NewRDFox_dupin(windows下带有本体文件)
-java -cp bin;lib/JRDFox.jar tech.oxfordsemantic.jrdfox.NewRDFoxWithOnto(windows下不带有本体文件)
+java -cp bin;lib/JRDFox.jar tech.oxfordsemantic.jrdfox.NewRDFox_dupin(windows下不包含本体文件)
+java -cp bin;lib/JRDFox.jar tech.oxfordsemantic.jrdfox.NewRDFoxWithOnto(windows下包含本体文件)
 
-java -cp bin:lib/JRDFox.jar tech.oxfordsemantic.jrdfox.NewRDFox_dupin(linux下带有本体文件)
-java -cp bin:lib/JRDFox.jar tech.oxfordsemantic.jrdfox.NewRDFoxWithOnto(linux下不带有本体文件)
+java -cp bin:lib/JRDFox.jar tech.oxfordsemantic.jrdfox.NewRDFox_dupin(linux下不包含本体文件)
+java -cp bin:lib/JRDFox.jar tech.oxfordsemantic.jrdfox.NewRDFoxWithOnto(linux下包含本体文件)
 ```
 
 # 3.版权
-&copy; copyright:牛津大学
+&copy; copyright: Oxford Semantic Technologies (牛津大学) 
 
-网址：https://docs.oxfordsemantic.tech
+官方网址：https://docs.oxfordsemantic.tech
